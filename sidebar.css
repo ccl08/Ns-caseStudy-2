@@ -1,0 +1,290 @@
+/* ============================================================
+   VitaBloom Influencer Sidebar — Streak-inspired Gmail panel
+   ============================================================ */
+
+:root {
+  --vb-purple:   #6d28d9;
+  --vb-indigo:   #4f46e5;
+  --vb-green:    #16a34a;
+  --vb-yellow:   #d97706;
+  --vb-red:      #dc2626;
+  --vb-grey:     #6b7280;
+  --vb-bg:       #ffffff;
+  --vb-surface:  #f9fafb;
+  --vb-border:   #e5e7eb;
+  --vb-text:     #111827;
+  --vb-subtext:  #6b7280;
+  --vb-shadow:   -4px 0 24px rgba(0,0,0,0.10);
+  --vb-width:    320px;
+  --vb-radius:   8px;
+}
+
+/* ── Sidebar container ─────────────────────────────────── */
+#vb-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: var(--vb-width);
+  height: 100vh;
+  background: var(--vb-bg);
+  box-shadow: var(--vb-shadow);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 13px;
+  color: var(--vb-text);
+  overflow: hidden;
+  border-left: 1px solid var(--vb-border);
+  transition: transform 0.2s ease;
+}
+
+#vb-sidebar.vb-hidden {
+  transform: translateX(calc(var(--vb-width) + 10px));
+}
+
+/* ── Close button ──────────────────────────────────────── */
+#vb-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--vb-subtext);
+  line-height: 1;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+#vb-close:hover {
+  background: var(--vb-border);
+  color: var(--vb-text);
+}
+
+/* ── Scrollable inner content ──────────────────────────── */
+#vb-body {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--vb-border) transparent;
+}
+
+/* ── Header block ──────────────────────────────────────── */
+.vb-header {
+  padding: 18px 16px 14px;
+  border-bottom: 1px solid var(--vb-border);
+  background: var(--vb-surface);
+}
+
+.vb-handle-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.vb-handle {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--vb-indigo);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+
+.vb-verdict-badge {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+.vb-verdict-badge.covered  { background: #dcfce7; color: var(--vb-green); }
+.vb-verdict-badge.at_risk  { background: #fef9c3; color: var(--vb-yellow); }
+.vb-verdict-badge.gap      { background: #fee2e2; color: var(--vb-red); }
+.vb-verdict-badge.error    { background: #f3f4f6; color: var(--vb-grey); }
+
+.vb-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--vb-text);
+  margin-bottom: 8px;
+}
+
+.vb-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.vb-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  background: var(--vb-border);
+  color: var(--vb-text);
+}
+.vb-pill.status-new         { background: #e0e7ff; color: #3730a3; }
+.vb-pill.status-contacted   { background: #dbeafe; color: #1d4ed8; }
+.vb-pill.status-negotiating { background: #fef3c7; color: #92400e; }
+.vb-pill.status-contracted  { background: #f0fdf4; color: #166534; }
+.vb-pill.status-live        { background: #dcfce7; color: #15803d; }
+
+/* ── Section ───────────────────────────────────────────── */
+.vb-section {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--vb-border);
+}
+
+.vb-section-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--vb-subtext);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.vb-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 4px;
+  font-size: 12px;
+}
+
+.vb-row-label {
+  color: var(--vb-subtext);
+  flex-shrink: 0;
+}
+
+.vb-row-value {
+  color: var(--vb-text);
+  font-weight: 500;
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 190px;
+}
+
+/* thread classification dot */
+.vb-thread-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-left: 6px;
+  flex-shrink: 0;
+}
+.vb-thread-dot.active    { background: var(--vb-green); }
+.vb-thread-dot.stale     { background: var(--vb-yellow); }
+.vb-thread-dot.no_threads { background: var(--vb-grey); }
+
+.vb-subject {
+  font-size: 12px;
+  color: var(--vb-text);
+  font-style: italic;
+  margin-bottom: 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Verdict block ─────────────────────────────────────── */
+.vb-verdict {
+  margin: 12px 16px 16px;
+  border-radius: var(--vb-radius);
+  padding: 12px 14px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.vb-verdict.covered  { background: #f0fdf4; border: 1px solid #bbf7d0; }
+.vb-verdict.at_risk  { background: #fffbeb; border: 1px solid #fde68a; }
+.vb-verdict.gap      { background: #fef2f2; border: 1px solid #fecaca; }
+.vb-verdict.error    { background: var(--vb-surface); border: 1px solid var(--vb-border); }
+
+.vb-verdict-title {
+  font-weight: 700;
+  font-size: 13px;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.vb-verdict.covered  .vb-verdict-title { color: var(--vb-green); }
+.vb-verdict.at_risk  .vb-verdict-title { color: var(--vb-yellow); }
+.vb-verdict.gap      .vb-verdict-title { color: var(--vb-red); }
+
+.vb-verdict-reason { color: var(--vb-text); margin-bottom: 4px; }
+.vb-verdict-action { color: var(--vb-subtext); font-style: italic; }
+
+/* ── Skeleton loading ──────────────────────────────────── */
+.vb-skeleton {
+  padding: 18px 16px;
+}
+
+.vb-skeleton-line {
+  height: 12px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+  background-size: 200% 100%;
+  animation: vb-shimmer 1.4s infinite;
+  margin-bottom: 10px;
+}
+.vb-skeleton-line.short { width: 40%; }
+.vb-skeleton-line.medium { width: 65%; }
+.vb-skeleton-line.long { width: 90%; }
+
+@keyframes vb-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── Status states ─────────────────────────────────────── */
+.vb-status-msg {
+  padding: 24px 16px;
+  text-align: center;
+  color: var(--vb-subtext);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.vb-status-msg.error { color: var(--vb-red); }
+.vb-status-msg strong { display: block; margin-bottom: 4px; color: var(--vb-text); }
+
+/* ── Inbox row dot badges ──────────────────────────────── */
+.vb-row-badge {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  margin-left: 6px;
+  vertical-align: middle;
+  flex-shrink: 0;
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.vb-row-badge.gap     { background: var(--vb-red); }
+.vb-row-badge.at_risk { background: var(--vb-yellow); }
+.vb-row-badge.covered { background: var(--vb-green); }
+
+/* Ensure Gmail thread rows can host the absolute badge */
+.zA { position: relative; }

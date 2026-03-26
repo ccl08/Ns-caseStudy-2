@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<!--
+  sidebar.html — Static reference template.
+  content.js builds the sidebar DOM dynamically using this as a design guide.
+  This file is also loadable standalone for design iteration.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VitaBloom Sidebar</title>
+  <link rel="stylesheet" href="sidebar.css">
+  <style>
+    /* Standalone preview padding */
+    body { margin: 0; background: #f3f4f6; display: flex; justify-content: flex-end; }
+    #vb-sidebar { position: relative; height: 100vh; }
+  </style>
+</head>
+<body>
+
+<div id="vb-sidebar">
+  <button id="vb-close" title="Close">✕</button>
+
+  <div id="vb-body">
+
+    <!-- ── Header ── -->
+    <div class="vb-header">
+      <div class="vb-handle-row">
+        <span class="vb-handle">@sofia.creates</span>
+        <span class="vb-verdict-badge at_risk">⚠️ at risk</span>
+      </div>
+      <div class="vb-name">Sofia Ramirez</div>
+      <div class="vb-pills">
+        <span class="vb-pill status-contacted">📧 Contacted</span>
+        <span class="vb-pill">Spring Campaign</span>
+      </div>
+    </div>
+
+    <!-- ── Gmail section ── -->
+    <div class="vb-section">
+      <div class="vb-section-label">📧 Gmail Threads</div>
+      <div class="vb-subject">"Re: Partnership proposal — VitaBloom"</div>
+      <div class="vb-row">
+        <span class="vb-row-label">Messages</span>
+        <span class="vb-row-value">4</span>
+      </div>
+      <div class="vb-row">
+        <span class="vb-row-label">Last message</span>
+        <span class="vb-row-value">
+          7 days ago
+          <span class="vb-thread-dot stale"></span>
+        </span>
+      </div>
+      <div class="vb-row">
+        <span class="vb-row-label">Classification</span>
+        <span class="vb-row-value">stale</span>
+      </div>
+    </div>
+
+    <!-- ── Sequence section ── -->
+    <div class="vb-section">
+      <div class="vb-section-label">📋 Sequence</div>
+      <div class="vb-row">
+        <span class="vb-row-label">Enrolled in</span>
+        <span class="vb-row-value">Influencer Outreach v2</span>
+      </div>
+      <div class="vb-row">
+        <span class="vb-row-label">Step</span>
+        <span class="vb-row-value">3 of 6</span>
+      </div>
+    </div>
+
+    <!-- ── Deal section ── -->
+    <div class="vb-section">
+      <div class="vb-section-label">💰 Deal</div>
+      <div class="vb-row">
+        <span class="vb-row-label">Fee</span>
+        <span class="vb-row-value">£1,500</span>
+      </div>
+      <div class="vb-row">
+        <span class="vb-row-label">Post date</span>
+        <span class="vb-row-value">Mar 20</span>
+      </div>
+    </div>
+
+    <!-- ── Verdict section ── -->
+    <div class="vb-verdict at_risk">
+      <div class="vb-verdict-title">⚠️ AT RISK</div>
+      <div class="vb-verdict-reason">Last thread &gt;48h ago</div>
+      <div class="vb-verdict-action">Follow up — deal may be going cold</div>
+    </div>
+
+  </div><!-- #vb-body -->
+</div><!-- #vb-sidebar -->
+
+</body>
+</html>

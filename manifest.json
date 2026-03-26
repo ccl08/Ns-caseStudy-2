@@ -1,0 +1,58 @@
+{
+  "manifest_version": 3,
+  "name": "VitaBloom Influencer Sidebar",
+  "version": "1.0.0",
+  "description": "Sequence coverage checker \u2014 shows deal status, Gmail threads, and sequence enrollment for any influencer email you open in Gmail.",
+  "permissions": [
+    "storage",
+    "tabs",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://mail.google.com/*",
+    "http://localhost:8765/*",
+    "http://localhost/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://mail.google.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "sidebar.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "VitaBloom Coverage Checker",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "sidebar.html",
+        "icons/*.png"
+      ],
+      "matches": [
+        "https://mail.google.com/*"
+      ]
+    }
+  ]
+}

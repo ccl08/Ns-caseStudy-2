@@ -1,0 +1,63 @@
+# Archive folders (large files, backups)
+archive/mbox/
+archive/takeout/
+
+# Data folders
+data/exports/
+data/logs/
+data/story_checks/
+data/case_study/
+data/forecast/
+data/funnel_stage/
+data/pipeline/
+data/status_history/
+data/sequences/state.json
+data/sequences/state.lock
+data/sequences/state.bak.*
+data/story_check_tracking.json
+data/source_audit.json
+data/post_extraction/
+influencer_discovery/data/stories/
+influencer_discovery/data/rich_profiles/
+influencer_discovery/data/profiles/
+influencer_discovery/data/following/
+influencer_discovery/data/discovery_progress.json
+influencer_discovery/data/existing_*_cache.json
+
+# Review app data
+review_app/data/
+
+# Logs
+*.stderr.log
+sync.log
+
+# macOS
+.DS_Store
+
+# Claude Code (keep skills tracked for portability)
+.claude/*
+!.claude/skills/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Environment variables (where API keys should live)
+.env
+
+# Gmail OAuth tokens (sensitive)
+token.json
+credentials.json
+dev_token.json
+dev_credentials.json
+
+# Sync state
+.sync_state.json
+
+# Funnel analysis (generated data + API caches)
+data/analysis/funnel_dataset.csv
+data/analysis/funnel_dataset.json
+data/analysis/gmail_threads_cache.json
+data/analysis/notion_enrichment_cache.json
