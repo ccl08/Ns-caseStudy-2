@@ -337,9 +337,7 @@ Gmail's DOM structure changes between sessions and across Google Workspace vs pe
 
 ## Author
 
-**Chris Céspedes**
-Growth Marketing Analyst | MBA Candidate, Alliance Manchester Business School
-[github.com/ccl08](https://github.com/ccl08)
+**Chris Cespedes**
 
 ---
 
